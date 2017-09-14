@@ -8,7 +8,7 @@ namespace Treegaem
 {
     public class Tree
     {
-        public int Height { get; set; }
+        public double Age { get; set; }
 
         public string FruitType { get; set; }
 
@@ -22,8 +22,8 @@ namespace Treegaem
 
         public double Growth { get; set; }
 
-        public int FruitGrowth { get; set; }
+        public double FruitGrowth { get; set; }
 
-        public int FruitDecay { get; set; }
+        public double FruitDecay { get; set; }
     }
 }

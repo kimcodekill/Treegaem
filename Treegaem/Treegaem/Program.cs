@@ -11,10 +11,14 @@ namespace Treegaem
         static void Main(string[] args)
         {
             Random r = new Random();
-            int money;
+            int money=0;
             int difficulty;
             bool done = false;
 
+            //Counters for things
+            int c = 1; 
+
+            //Difficulty menu
             do
             {
                 Console.WriteLine("Choose difficulty: ");
@@ -44,8 +48,9 @@ namespace Treegaem
                 }
             }
             while (!done);
-            List<Tree> TreesDB = new List<Tree>();
 
+            //Create some trees
+            List<Tree> TreesDB = new List<Tree>();
             TreesDB.Add(new Tree()
             {
                 TreeType = "Apple",
@@ -110,6 +115,18 @@ namespace Treegaem
                 FruitGrowth = 0.05,
                 FruitDecay = 1.01
             });
+
+            Console.Clear();
+
+            //Print all trees
+            Console.WriteLine(string.Format("You have {0} moneys", money));
+            foreach (Tree t in TreesDB)
+            {
+                Console.WriteLine(string.Format("{0} {1}, {2}",c , t.TreeType, t.Price));
+                c++;
+            }
+
+            Console.WriteLine("");
         }
     }
 }
