@@ -1,0 +1,7 @@
+C:\Users\Admin\Documents\Fritid\Treegaem\Treegaem\Treegaem\bin\Debug\Treegaem.exe.config
+C:\Users\Admin\Documents\Fritid\Treegaem\Treegaem\Treegaem\bin\Debug\Treegaem.exe
+C:\Users\Admin\Documents\Fritid\Treegaem\Treegaem\Treegaem\bin\Debug\Treegaem.pdb
+C:\Users\Admin\Documents\Fritid\Treegaem\Treegaem\Treegaem\obj\Debug\Treegaem.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\Fritid\Treegaem\Treegaem\Treegaem\obj\Debug\Treegaem.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\Fritid\Treegaem\Treegaem\Treegaem\obj\Debug\Treegaem.exe
+C:\Users\Admin\Documents\Fritid\Treegaem\Treegaem\Treegaem\obj\Debug\Treegaem.pdb
