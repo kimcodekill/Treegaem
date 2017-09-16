@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Treegaem
@@ -12,14 +13,13 @@ namespace Treegaem
         public static bool Done { get; set; }
         public static List<Tree> TreesDB = new List<Tree>();
         public static List<Tree> Trees = new List<Tree>();
-
+        public static int counter { get; set; }
 
         static void Main(string[] args)
         {
             //vars
-            
-            Random r = new Random();
             Money = 0;
+            counter = 0;
             int difficulty;
             int buyTree;
             Done = false;
@@ -36,7 +36,8 @@ namespace Treegaem
                 Price = 250,
                 FruitGrowth = 0.3,
                 FruitDecay = 1.2,
-                Height = 0.5
+                Height = 0.5,
+                FruitType = "Apple"
             });
             TreesDB.Add(new Tree()
             {
@@ -54,7 +55,8 @@ namespace Treegaem
                 Price = 600,
                 FruitGrowth = 0.15,
                 FruitDecay = 1.5,
-                Height = 0.5
+                Height = 0.5,
+                FruitType = "Orange"
             });
             TreesDB.Add(new Tree()
             {
@@ -63,7 +65,8 @@ namespace Treegaem
                 Price = 750,
                 FruitGrowth = 0.2,
                 FruitDecay = 1.3,
-                Height = 1.5
+                Height = 1.5,
+                FruitType = "Banana"
             });
             TreesDB.Add(new Tree()
             {
@@ -72,7 +75,8 @@ namespace Treegaem
                 Price = 500,
                 FruitGrowth = 0.6,
                 FruitDecay = 1.5,
-                Height = 0.5
+                Height = 0.5,
+                FruitType = "Peach"
             });
             TreesDB.Add(new Tree()
             {
@@ -81,7 +85,8 @@ namespace Treegaem
                 Price = 500,
                 FruitGrowth = 0.95,
                 FruitDecay = 1.65,
-                Height = 0.5
+                Height = 0.5,
+                FruitType = "Cherry"
             });
             TreesDB.Add(new Tree()
             {
@@ -90,7 +95,8 @@ namespace Treegaem
                 Price = 150,
                 FruitGrowth = 0.05,
                 FruitDecay = 1.01,
-                Height = 0.02
+                Height = 0.02,
+                FruitType = "Pinecone"
             });
             TreesDB.Add(new Tree()
             {
@@ -99,8 +105,16 @@ namespace Treegaem
                 Price = 1000,
                 FruitGrowth = 0.05,
                 FruitDecay = 1.01,
-                Height = 0.02
+                Height = 0.02,
+                FruitType = "Acorn"
             });
+            foreach (Tree t in TreesDB)
+            {
+                t.Age = 0;
+                t.FruitAmount = 0;
+                t.FruitGrowing = 0;
+            }
+
 
             //Welcome message
             Console.WriteLine("When making inputs, please make sure to only use numbers unless specified otherwise.");
@@ -145,10 +159,10 @@ namespace Treegaem
 
 
 
-            Console.Clear();
             //Menu
             do
             {
+                Console.Clear();
                 Console.WriteLine("Do you want to: ");
                 Console.WriteLine("1. Buy some trees?");
                 Console.WriteLine("2. Check on you plantation?");
@@ -167,6 +181,7 @@ namespace Treegaem
                             Console.WriteLine(string.Format("{0}. {1}, {2} moneys", c, t.TreeType, t.Price));
                             c++;
                         }
+                        Console.WriteLine("0. Exit to menu");
                         c = 1;
                         Console.WriteLine("What tree do you want to buy?");
                         buyTree = int.Parse(Console.ReadLine());
@@ -199,6 +214,8 @@ namespace Treegaem
                             case 8:
                                 Buy(buyTree);
                                 break;
+                            case 0:
+                                break;
                             default:
                                 WrongInput(buyTree);
                                 break;
@@ -220,6 +237,7 @@ namespace Treegaem
                         WrongInput(menu);
                         break;
                 }
+                //Simulate();
             }
             while (menu != 0); 
         }
@@ -228,15 +246,20 @@ namespace Treegaem
 
         private static void Buy(int p)
         {
-            if (Money >= TreesDB[p-1].Price)
+            Random r = new Random();
+            if (Money >= TreesDB[p - 1].Price)
             {
-                Trees.Add(TreesDB[p-1]);
-                Money = Money - TreesDB[p-1].Price;
+                Trees.Add(TreesDB[p - 1]);
+                Money = Money - TreesDB[p - 1].Price;
+                double q = r.NextDouble();
+                Trees[Trees.Count-1].Quality = q;
             }
             else
             {
                 Console.WriteLine("You dont have enought money to buy the {0}-tree", TreesDB[p-1].TreeType);
             }
+            PrintTrees();
+            counter++;
         }
 
         private static void PrintTrees()
@@ -245,13 +268,28 @@ namespace Treegaem
 
             foreach (Tree t in Trees)
             {
-                if (!TreeCheck.Contains(t.TreeType))
-                {
+                // if (!TreeCheck.Contains(t.TreeType))
+                // {
                     int x = Trees.Count(y => y.TreeType == t.TreeType);
-                    Console.WriteLine("{0} {1}-trees", x, t.TreeType);
                     TreeCheck.Add(t.TreeType);
-                }
-                
+                    Console.WriteLine("{0} number {1} height {2} age {3} fruittype {4} fruitamount {5} fruitgrowing {6} treetype {7} quality {8} price {9} growth {10} fruitgrowth {11} decay", 
+                        x, t.Height, t.Age, t.FruitType, t.FruitAmount, t.FruitGrowing, t.TreeType, t.Quality, 
+                        t.Price, t.Growth, t.FruitGrowth, t.FruitDecay);
+                // }
+            }
+            Console.ReadLine();
+        }
+        private static void Simulate()
+        {
+            foreach (Tree t in Trees)
+            {
+                t.Height += t.Growth;
+                t.FruitGrowing += t.FruitGrowth;
+                if (t.FruitGrowing >= 1 && t.FruitType == "Cherry")
+                    t.FruitAmount += 15;
+                if (t.FruitGrowing >= 1 && t.FruitType != "Cherry")
+                    t.FruitAmount++;
+
             }
         }
 
