@@ -8,25 +8,22 @@ namespace Treegaem
 {
     class Program
     {
+        public static int Money { get; set; }
+        public static bool Done { get; set; }
+        public static List<Tree> TreesDB = new List<Tree>();
+        public static List<Tree> Trees = new List<Tree>();
+
+
         static void Main(string[] args)
         {
             //vars
-            List<Tree> TreesDB = new List<Tree>();
-            List<Tree> Trees = new List<Tree>();
+            
             Random r = new Random();
-            int money = 0;
+            Money = 0;
             int difficulty;
             int buyTree;
-            bool done = false;
+            Done = false;
             int menu = 0;
-            int apple = 0;
-            int pear = 0;
-            int orange = 0;
-            int banana = 0;
-            int peach = 0;
-            int cherry = 0;
-            int pine = 0;
-            int oak = 0;
 
             //Counters for things
             int c = 1;
@@ -116,23 +113,27 @@ namespace Treegaem
                 Console.WriteLine("1. Easy");
                 Console.WriteLine("2. Medium");
                 Console.WriteLine("3. Hard");
+                Console.WriteLine("0. Exit");
                 difficulty = int.Parse(Console.ReadLine());
 
                 switch (difficulty)
                 {
                     case 1:
-                        money = 5000;
-                        done = true;
+                        Money = 5000;
+                        Done = true;
                         break;
 
                     case 2:
-                        money = 2000;
-                        done = true;
+                        Money = 2000;
+                        Done = true;
                         break;
 
                     case 3:
-                        money = 500;
-                        done = true;
+                        Money = 500;
+                        Done = true;
+                        break;
+                    case 0:
+                        Terminate();
                         break;
 
                     default:
@@ -140,7 +141,7 @@ namespace Treegaem
                         break;
                 }
             }
-            while (!done);
+            while (!Done);
 
 
 
@@ -160,7 +161,7 @@ namespace Treegaem
                 {
                     case 1:
                         //Print all trees
-                        Console.WriteLine(string.Format("You have {0} moneys", money));
+                        Console.WriteLine(string.Format("You have {0} moneys", Money));
                         foreach (Tree t in TreesDB)
                         {
                             Console.WriteLine(string.Format("{0}. {1}, {2} moneys", c, t.TreeType, t.Price));
@@ -175,76 +176,93 @@ namespace Treegaem
                         switch (buyTree)
                         {
                             case 1:
-                                Trees.Add(TreesDB[1]);
-                                money -= TreesDB[1].Price;
+                                Buy(buyTree);
                                 break;
                             case 2:
-                                Trees.Add(TreesDB[2]);
-                                money -= TreesDB[2].Price;
+                                Buy(buyTree);
                                 break;
                             case 3:
-                                Trees.Add(TreesDB[3]);
-                                money -= TreesDB[3].Price;
+                                Buy(buyTree);
                                 break;
                             case 4:
-                                Trees.Add(TreesDB[4]);
-                                money -= TreesDB[4].Price;
+                                Buy(buyTree);
                                 break;
                             case 5:
-                                Trees.Add(TreesDB[5]);
-                                money -= TreesDB[5].Price;
+                                Buy(buyTree);
                                 break;
                             case 6:
-                                Trees.Add(TreesDB[6]);
-                                money -= TreesDB[6].Price;
+                                Buy(buyTree);
                                 break;
                             case 7:
-                                Trees.Add(TreesDB[7]);
-                                money -= TreesDB[7].Price;
+                                Buy(buyTree);
                                 break;
                             case 8:
-                                Trees.Add(TreesDB[8]);
-                                money -= TreesDB[8].Price;
+                                Buy(buyTree);
                                 break;
                             default:
                                 WrongInput(buyTree);
                                 break;
-
                         }
                         break;
+
+                    //Print all the trees
                     case 2:
-                        foreach (Tree t in Trees)
-                        {
-                            int x = Trees.Count(y => y.TreeType == t.TreeType);
-                            Console.WriteLine("{0} {1}-trees", x, t.TreeType);
-                        }
+                        PrintTrees(Trees);
                         break;
 
 
 
 
                     case 0:
-                        done = true;
-                        Environment.Exit(0);
+                        Terminate();
                         break;
                     default:
                         WrongInput(menu);
                         break;
                 }
-
-
-
-
-
-
-
             }
-            while (menu != 0);
+            while (menu != 0); 
+        }
+
+        
+
+        private static void Buy(int p)
+        {
+            if (money >= TreesDB[p-1].Price)
+            {
+                Trees.Add(TreesDB[p-1]);
+                money = money - TreesDB[p-1].Price;
+            }
+            else
+            {
+                Console.WriteLine("You dont have enought money to buy the {0}-tree", TreesDB[p-1].TreeType);
+            }
+        }
+
+        private static void PrintTrees(List<Tree> Trees)
+        {
+            List<String> TreeCheck = new List<String>();
+
+            foreach (Tree t in Trees)
+            {
+                if (!TreeCheck.Contains(t.TreeType))
+                {
+                    int x = Trees.Count(y => y.TreeType == t.TreeType);
+                    Console.WriteLine("{0} {1}-trees", x, t.TreeType);
+                    TreeCheck.Add(t.TreeType);
+                }
+                
+            }
         }
 
         private static void WrongInput(int i)
         {
             Console.WriteLine(string.Format("{0} is not a valid input", i));
+        }
+
+        private static void Terminate()
+        {
+            Environment.Exit(0);
         }
     }
 }
