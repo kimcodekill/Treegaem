@@ -16,9 +16,11 @@ namespace Treegaem
 
         public int FruitAmount { get; set; }
 
+        public double FruitGrowing { get; set; }
+
         public string TreeType { get; set; }
 
-        public int Quality { get; set; }
+        public double Quality { get; set; }
 
         public int Price { get; set; }
 
