@@ -13,13 +13,13 @@ namespace Treegaem
         public static bool Done { get; set; }
         public static List<Tree> TreesDB = new List<Tree>();
         public static List<Tree> Trees = new List<Tree>();
-        public static int counter { get; set; }
+        public static int Counter { get; set; }
 
         static void Main(string[] args)
         {
             //vars
             Money = 0;
-            counter = 0;
+            Counter = 1;
             int difficulty;
             int buyTree;
             Done = false;
@@ -250,16 +250,16 @@ namespace Treegaem
             if (Money >= TreesDB[p - 1].Price)
             {
                 Trees.Add(TreesDB[p - 1]);
+                Trees[Trees.Count()-1].Id = Counter;
                 Money = Money - TreesDB[p - 1].Price;
-                double q = r.NextDouble();
-                Trees[Trees.Count-1].Quality = q;
+                Trees[Trees.Count-1].Quality = r.NextDouble(); ;
             }
             else
             {
                 Console.WriteLine("You dont have enought money to buy the {0}-tree", TreesDB[p-1].TreeType);
             }
+            Counter++;
             PrintTrees();
-            counter++;
         }
 
         private static void PrintTrees()
@@ -268,17 +268,18 @@ namespace Treegaem
 
             foreach (Tree t in Trees)
             {
-                // if (!TreeCheck.Contains(t.TreeType))
-                // {
-                    int x = Trees.Count(y => y.TreeType == t.TreeType);
-                    TreeCheck.Add(t.TreeType);
-                    Console.WriteLine("{0} number {1} height {2} age {3} fruittype {4} fruitamount {5} fruitgrowing {6} treetype {7} quality {8} price {9} growth {10} fruitgrowth {11} decay", 
-                        x, t.Height, t.Age, t.FruitType, t.FruitAmount, t.FruitGrowing, t.TreeType, t.Quality, 
+                //if (!TreeCheck.Contains(t.TreeType))
+                //{
+                //    int x = Trees.Count(y => y.TreeType == t.TreeType);
+                //    TreeCheck.Add(t.TreeType);
+                    Console.WriteLine("{0} id {1} height {2} age {3} fruittype {4} fruitamount {5} fruitgrowing {6} treetype {7} quality {8} price {9} growth {10} fruitgrowth {11} decay",
+                        t.Id, t.Height, t.Age, t.FruitType, t.FruitAmount, t.FruitGrowing, t.TreeType, t.Quality,
                         t.Price, t.Growth, t.FruitGrowth, t.FruitDecay);
-                // }
+                //}
             }
             Console.ReadLine();
         }
+
         private static void Simulate()
         {
             foreach (Tree t in Trees)

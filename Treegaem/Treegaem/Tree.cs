@@ -29,5 +29,7 @@ namespace Treegaem
         public double FruitGrowth { get; set; }
 
         public double FruitDecay { get; set; }
+
+        public int Id { get; set; }
     }
 }
