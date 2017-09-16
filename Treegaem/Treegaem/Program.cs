@@ -10,54 +10,26 @@ namespace Treegaem
     {
         static void Main(string[] args)
         {
+            //vars
+            List<Tree> TreesDB = new List<Tree>();
             Random r = new Random();
-            int money=0;
+            int money = 0;
             int difficulty;
+            int buyTree;
             bool done = false;
+            int menu = 0;
 
             //Counters for things
-            int c = 1; 
-
-            //Difficulty menu
-            do
-            {
-                Console.WriteLine("Choose difficulty: ");
-                Console.WriteLine("1. Easy");
-                Console.WriteLine("2. Medium");
-                Console.WriteLine("3. Hard");
-                difficulty = int.Parse(Console.ReadLine());
-
-                if (difficulty == 1)
-                {
-                    money = 5000;
-                    done = true;
-                }
-                else if (difficulty == 2)
-                {
-                    money = 2000;
-                    done = true;
-                }
-                else if (difficulty == 3)
-                {
-                    money = 500;
-                    done = true;
-                }
-                else
-                {
-                    Console.WriteLine(string.Format("{0} is not a valid input", difficulty));
-                }
-            }
-            while (!done);
+            int c = 1;
 
             //Create some trees
-            List<Tree> TreesDB = new List<Tree>();
             TreesDB.Add(new Tree()
             {
                 TreeType = "Apple",
                 Growth = 0.1,
                 Price = 250,
-                FruitGrowth =0.3,
-                FruitDecay =1.2
+                FruitGrowth = 0.3,
+                FruitDecay = 1.2
             });
             TreesDB.Add(new Tree()
             {
@@ -116,17 +88,87 @@ namespace Treegaem
                 FruitDecay = 1.01
             });
 
-            Console.Clear();
-
-            //Print all trees
-            Console.WriteLine(string.Format("You have {0} moneys", money));
-            foreach (Tree t in TreesDB)
+            //Difficulty menu
+            do
             {
-                Console.WriteLine(string.Format("{0} {1}, {2}",c , t.TreeType, t.Price));
-                c++;
-            }
+                Console.WriteLine("Choose difficulty: ");
+                Console.WriteLine("1. Easy");
+                Console.WriteLine("2. Medium");
+                Console.WriteLine("3. Hard");
+                difficulty = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("");
+                switch (difficulty)
+                {
+                    case 1:
+                        money = 5000;
+                        done = true;
+                        break;
+
+                    case 2:
+                        money = 2000;
+                        done = true;
+                        break;
+
+                    case 3:
+                        money = 500;
+                        done = true;
+                        break;
+
+                    default:
+                        Console.WriteLine(string.Format("{0} is not a valid input", difficulty));
+                        break;
+                }
+            }
+            while (!done);
+
+            
+
+            Console.Clear();
+            //Menu
+            do
+            {
+                Console.WriteLine("Do you want to: ");
+                Console.WriteLine("1. Buy some trees?");
+                Console.WriteLine("2. Check on you plantation?");
+                Console.WriteLine("3. Harvest some trees?");
+                Console.WriteLine("4. Sell some trees?");
+                Console.WriteLine("0. Exit");
+                menu = int.Parse(Console.ReadLine());
+
+                switch (menu)
+                {
+                    case 1:
+                        //Print all trees
+                        Console.WriteLine(string.Format("You have {0} moneys", money));
+                        foreach (Tree t in TreesDB)
+                        {
+                            Console.WriteLine(string.Format("{0}. {1}, {2} moneys", c, t.TreeType, t.Price));
+                            c++;
+                        }
+
+                        Console.WriteLine("What tree do you want to buy?");
+                        buyTree = int.Parse(Console.ReadLine());
+
+
+
+
+
+
+
+
+                        break;
+
+                }
+
+                
+
+
+
+
+
+
+            }
+            while (menu != 0);
         }
     }
 }
