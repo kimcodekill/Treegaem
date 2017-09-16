@@ -10,6 +10,8 @@ namespace Treegaem
     {
         public double Height { get; set; }
 
+        public int Age { get; set; }
+
         public string FruitType { get; set; }
 
         public int FruitAmount { get; set; }
