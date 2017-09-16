@@ -207,7 +207,7 @@ namespace Treegaem
 
                     //Print all the trees
                     case 2:
-                        PrintTrees(Trees);
+                        PrintTrees();
                         break;
 
 
@@ -228,10 +228,10 @@ namespace Treegaem
 
         private static void Buy(int p)
         {
-            if (money >= TreesDB[p-1].Price)
+            if (Money >= TreesDB[p-1].Price)
             {
                 Trees.Add(TreesDB[p-1]);
-                money = money - TreesDB[p-1].Price;
+                Money = Money - TreesDB[p-1].Price;
             }
             else
             {
@@ -239,7 +239,7 @@ namespace Treegaem
             }
         }
 
-        private static void PrintTrees(List<Tree> Trees)
+        private static void PrintTrees()
         {
             List<String> TreeCheck = new List<String>();
 
