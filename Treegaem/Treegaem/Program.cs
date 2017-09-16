@@ -12,6 +12,7 @@ namespace Treegaem
         {
             //vars
             List<Tree> TreesDB = new List<Tree>();
+            List<Tree> Trees = new List<Tree>();
             Random r = new Random();
             int money = 0;
             int difficulty;
@@ -96,6 +97,10 @@ namespace Treegaem
                 Height = 0.02
             });
 
+            //Welcome message
+            Console.WriteLine("When making inputs, please make sure to only use numbers unless specified otherwise.");
+
+
             //Difficulty menu
             do
             {
@@ -159,6 +164,40 @@ namespace Treegaem
 
 
 
+                        //EXTEND SWITCH IF YOU ADD MORE TREES
+                        switch (buyTree)
+                        {
+                            case 1:
+                                Trees.Add(TreesDB[1]);
+                                break;
+                            case 2:
+                                Trees.Add(TreesDB[2]);
+                                break;
+                            case 3:
+                                Trees.Add(TreesDB[3]);
+                                break;
+                            case 4:
+                                Trees.Add(TreesDB[4]);
+                                break;
+                            case 5:
+                                Trees.Add(TreesDB[5]);
+                                break;
+                            case 6:
+                                Trees.Add(TreesDB[6]);
+                                break;
+                            case 7:
+                                Trees.Add(TreesDB[7]);
+                                break;
+                            case 8:
+                                Trees.Add(TreesDB[8]);
+                                break;
+                            default:
+                                Console.WriteLine(string.Format("{0} is not a valid input", buyTree));
+                                break;
+
+                        }
+
+
 
 
 
@@ -166,6 +205,13 @@ namespace Treegaem
 
                         break;
 
+                    case 0:
+                        done = true;
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input, {0}", menu);
+                        break;
                 }
 
                 
