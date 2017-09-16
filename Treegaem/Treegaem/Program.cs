@@ -29,7 +29,8 @@ namespace Treegaem
                 Growth = 0.1,
                 Price = 250,
                 FruitGrowth = 0.3,
-                FruitDecay = 1.2
+                FruitDecay = 1.2,
+                Height = 0.5
             });
             TreesDB.Add(new Tree()
             {
@@ -37,15 +38,17 @@ namespace Treegaem
                 Growth = 0.15,
                 Price = 350,
                 FruitGrowth = 0.25,
-                FruitDecay = 1.4
+                FruitDecay = 1.4,
+                Height = 0.5
             });
             TreesDB.Add(new Tree()
             {
-                TreeType = "Orange",
+                TreeType = "Orange",    
                 Growth = 0.05,
                 Price = 600,
                 FruitGrowth = 0.15,
-                FruitDecay = 1.5
+                FruitDecay = 1.5,
+                Height = 0.5
             });
             TreesDB.Add(new Tree()
             {
@@ -53,7 +56,8 @@ namespace Treegaem
                 Growth = 0.5,
                 Price = 750,
                 FruitGrowth = 0.2,
-                FruitDecay = 1.3
+                FruitDecay = 1.3,
+                Height = 1.5                
             });
             TreesDB.Add(new Tree()
             {
@@ -61,7 +65,8 @@ namespace Treegaem
                 Growth = 0.25,
                 Price = 500,
                 FruitGrowth = 0.6,
-                FruitDecay = 1.5
+                FruitDecay = 1.5,
+                Height= 0.5
             });
             TreesDB.Add(new Tree()
             {
@@ -69,7 +74,8 @@ namespace Treegaem
                 Growth = 0.05,
                 Price = 500,
                 FruitGrowth = 0.95,
-                FruitDecay = 1.65
+                FruitDecay = 1.65,
+                Height = 0.5
             });
             TreesDB.Add(new Tree()
             {
@@ -77,7 +83,8 @@ namespace Treegaem
                 Growth = 0.6,
                 Price = 150,
                 FruitGrowth = 0.05,
-                FruitDecay = 1.01
+                FruitDecay = 1.01,
+                Height = 0.02
             });
             TreesDB.Add(new Tree()
             {
@@ -85,7 +92,8 @@ namespace Treegaem
                 Growth = 0.05,
                 Price = 1000,
                 FruitGrowth = 0.05,
-                FruitDecay = 1.01
+                FruitDecay = 1.01,
+                Height = 0.02
             });
 
             //Difficulty menu
