@@ -237,7 +237,7 @@ namespace Treegaem
                         WrongInput(menu);
                         break;
                 }
-                //Simulate();
+                Simulate();
             }
             while (menu != 0); 
         }
@@ -249,8 +249,10 @@ namespace Treegaem
             Random r = new Random();
             if (Money >= TreesDB[p - 1].Price)
             {
-                Trees.Add(TreesDB[p - 1]);
-                Trees[Trees.Count()-1].Id = Counter;
+                Tree temp = new Tree();
+                temp = TreesDB[p - 1];
+                temp.Id = Counter;
+                Trees.Add(temp);
                 Money = Money - TreesDB[p - 1].Price;
                 Trees[Trees.Count-1].Quality = r.NextDouble(); ;
             }
@@ -287,10 +289,16 @@ namespace Treegaem
                 t.Height += t.Growth;
                 t.FruitGrowing += t.FruitGrowth;
                 if (t.FruitGrowing >= 1 && t.FruitType == "Cherry")
-                    t.FruitAmount += 15;
-                if (t.FruitGrowing >= 1 && t.FruitType != "Cherry")
+                {
                     t.FruitAmount++;
-
+                    t.FruitGrowing--;
+                }
+                    
+                if (t.FruitGrowing >= 1 && t.FruitType != "Cherry")
+                {
+                    t.FruitAmount++;
+                    t.FruitGrowing--;
+                }
             }
         }
 
