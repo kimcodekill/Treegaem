@@ -33,7 +33,6 @@ namespace Treegaem
             Money = 0;
             Counter = 1;
             int difficulty;
-            int buyTree;
             Done = false;
             int menu = 0;
 
@@ -196,52 +195,15 @@ namespace Treegaem
                         Console.WriteLine("0. Exit to menu");
                         c = 1;
                         Console.WriteLine("What tree do you want to buy?");
-                        buyTree = int.Parse(Console.ReadLine());
+                        
                         Console.WriteLine();
-
-                        //EXTEND SWITCH IF YOU ADD MORE TREES
-                        switch (buyTree)
-                        {
-                            case 1:
-                                Buy(buyTree);
-                                break;
-                            case 2:
-                                Buy(buyTree);
-                                break;
-                            case 3:
-                                Buy(buyTree);
-                                break;
-                            case 4:
-                                Buy(buyTree);
-                                break;
-                            case 5:
-                                Buy(buyTree);
-                                break;
-                            case 6:
-                                Buy(buyTree);
-                                break;
-                            case 7:
-                                Buy(buyTree);
-                                break;
-                            case 8:
-                                Buy(buyTree);
-                                break;
-                            case 0:
-                                break;
-                            default:
-                                WrongInput(buyTree);
-                                break;
-                        }
+                        Buy(int.Parse(Console.ReadLine()) - 1);
                         break;
 
                     //Print all the trees
                     case 2:
                         PrintTrees();
                         break;
-
-
-
-
                     case 0:
                         Terminate();
                         break;
@@ -256,21 +218,36 @@ namespace Treegaem
 
         
 
-        private static void Buy(EnumTree t)
+        private static void Buy(int t)
         {
             Random r = new Random();
-            if (Money >= TreesDB[t - 1].Price)
+            if (Money >= TreesDB[t].Price)
             {
-                Tree temp = new Tree();
-                temp = TreesDB[p - 1];
-                temp.Id = Counter;
-                Trees.Add(temp);
-                Money = Money - TreesDB[p - 1].Price;
-                Trees[Trees.Count-1].Quality = r.NextDouble(); ;
+                switch(t)
+                {
+                    case 0:
+                        Trees.Add(new Tree()
+                        {
+                            TreeType = "Apple",
+                            Growth = 0.1,
+                            Price = 250,
+                            FruitGrowth = 0.3,
+                            FruitDecay = 1.2,
+                            Height = 0.5,
+                            FruitType = "Apple",
+                            Id = Counter,
+                            Quality = r.NextDouble()
+                        });
+                        break;
+                    default:
+                        break;
+
+                }
+                Money = Money - TreesDB[t].Price;
             }
             else
             {
-                Console.WriteLine("You dont have enought money to buy the {0}-tree", TreesDB[p-1].TreeType);
+                Console.WriteLine("You dont have enought money to buy the {0}-tree", TreesDB[t].TreeType);
             }
             Counter++;
             PrintTrees();
