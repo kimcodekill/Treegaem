@@ -7,18 +7,6 @@ using System.Threading.Tasks;
 
 namespace Treegaem
 {
-    enum EnumTree
-    {
-        Apple,
-        Pear,
-        Orange,
-        Banana,
-        Peach,
-        Cherry,
-        Pine,
-        Oak
-    }
-
     class Program
     {
         public static int Money { get; set; }
