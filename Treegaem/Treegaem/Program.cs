@@ -7,6 +7,18 @@ using System.Threading.Tasks;
 
 namespace Treegaem
 {
+    enum EnumTree
+    {
+        Apple,
+        Pear,
+        Orange,
+        Banana,
+        Peach,
+        Cherry,
+        Pine,
+        Oak
+    }
+
     class Program
     {
         public static int Money { get; set; }
@@ -244,10 +256,10 @@ namespace Treegaem
 
         
 
-        private static void Buy(int p)
+        private static void Buy(EnumTree t)
         {
             Random r = new Random();
-            if (Money >= TreesDB[p - 1].Price)
+            if (Money >= TreesDB[t - 1].Price)
             {
                 Tree temp = new Tree();
                 temp = TreesDB[p - 1];
